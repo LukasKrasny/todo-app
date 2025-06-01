@@ -1,13 +1,15 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header>
+  <div>
+    <header>
 
-  </header>
-<!-- RouterView nám bude renderovat jednotlivé stránky -->
-  <RouterView />
+    </header>
+    <!-- RouterView nám bude renderovat jednotlivé stránky -->
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
