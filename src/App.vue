@@ -1,16 +1,18 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router';
-</script>
-
 <template>
   <div>
     <header>
-
+      
     </header>
-    <!-- RouterView nám bude renderovat jednotlivé stránky -->
-    <RouterView />
+
+    <!-- Tady už zavoláme naši komponentu -->
+    <TodoApp />
   </div>
 </template>
+
+<script setup>
+// Importujeme komponentu z cesty, kde máš soubor TodoApp.vue
+import TodoApp from './components/ToDoApp.vue';
+</script>
 
 <style scoped>
 
