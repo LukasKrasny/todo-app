@@ -43,7 +43,7 @@
 
 <script setup>
 // Importujeme ref z Vue 3 (Composition API)
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 // tasks je reaktivní pole všech úkolů
 const tasks = ref([])
@@ -73,6 +73,25 @@ function deleteTask (index) {
 function editTask (task) {
     task.editing = true
 }
+
+// Funkce pro uložení editace
+function saveTask(task) {
+    task.editing = false
+}
+
+//Sledujeme změny v tasks a ukládáme je do localStorage
+watch(tasks, (newTasks) => {
+    localStorage.setItem('tasks', JSON.stringify(newTasks))
+}, { deep: true }) 
+
+// Při načtení aplikace načteme data z localStorage
+onMounted(() => {
+    const savedTasks = localStorage.getItem('tasks')
+    if (savedTasks) {
+        tasks.value = JSON.parse(savedTasks)
+    }
+})
+
 </script>
 
 <style scoped>
