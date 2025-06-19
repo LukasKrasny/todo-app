@@ -19,18 +19,19 @@
         <transition-group name="fade" tag="ul" class="space-y-2">
           <li v-for="(task, index) in generalTasks" :key="index"
             class="flex justify-between items-center p-2 rounded bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 grow">
               <input type="checkbox" v-model="task.done" />
-              <span v-if="!task.editing" :class="task.done ? 'line-through text-gray-400' : 'text-black dark:text-white'">
+              <span v-if="!task.editing" :class="task.done ? 'line-through text-gray-400' : 'text-black dark:text-white'"
+              class="truncate">
                 {{ task.text }}
               </span>
               <input 
                 v-else v-model="task.text" 
                 @blur="task.editing = false" 
-                @keyup.enter="task.editing = false"   
-                class="border rounded p-1 bg-white dark:bg-gray-900 text-black dark:text-white border-gray-300 dark:border-gray-600" />
+                @keyup.enter="task.editing = false"
+                class="bg-white dark:bg-gray-900 text-black dark:text-white px-1 py-0.5 rounded w-full max-w-[calc(100%-3rem)]" />
             </div>
-            <div class="flex gap-2">
+            <div class="flex gap-2 shrink-0">
               <button @click="task.editing = true" class="text-yellow-500">✏️</button>
               <button @click="generalTasks.splice(index, 1)" class="text-red-500">🗑️</button>
             </div>
@@ -61,9 +62,9 @@
             </div>
             <div v-else>
               <input v-model="list.name"
-                class="border rounded p-1 bg-white dark:bg-gray-900 text-black dark:text-white border-gray-300 dark:border-gray-600" />
+                class="bg-white dark:bg-gray-900 text-black dark:text-white px-1 py-1 rounded w-full max-w-[calc(100%-3rem)]" />
             </div>
-            <div class="flex gap-2">
+            <div class="flex gap-2 shrink-0">
               <button @click="list.editing = !list.editing" class="text-yellow-500">✏️</button>
               <button @click="deleteList(listIndex)" class="text-red-500">🗑️</button>
             </div>
@@ -83,7 +84,7 @@
             <transition-group name="fade" tag="ul" class="space-y-2">
               <li v-for="(task, taskIndex) in list.tasks" :key="taskIndex"
                 class="flex justify-between items-center p-2 rounded bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600">
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 grow">
                   <input type="checkbox" v-model="task.done" />
                   <span v-if="!task.editing" :class="task.done ? 'line-through text-gray-400' : 'text-black dark:text-white'">
                     {{ task.text }}
@@ -92,9 +93,9 @@
                     v-else v-model="task.text" 
                     @blur="task.editing = false" 
                     @keyup.enter="task.editing = false" 
-                    class="border rounded p-1 bg-white dark:bg-gray-900 text-black dark:text-white border-gray-300 dark:border-gray-600" />
+                    class="bg-white dark:bg-gray-900 text-black dark:text-white px-1 py-1 rounded w-full max-w-[calc(100%-3rem)]" />
                 </div>
-                <div class="flex gap-2">
+                <div class="flex gap-2 shrink-0">
                   <button @click="task.editing = true" class="text-yellow-500">✏️</button>
                   <button @click="list.tasks.splice(taskIndex, 1)" class="text-red-500">🗑️</button>
                 </div>
