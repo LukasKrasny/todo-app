@@ -21,9 +21,14 @@
             class="flex justify-between items-center p-2 rounded bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600">
             <div class="flex items-center gap-2">
               <input type="checkbox" v-model="task.done" />
-              <span :class="task.done ? 'line-through text-gray-400' : 'text-black dark:text-white'">
+              <span v-if="!task.editing" :class="task.done ? 'line-through text-gray-400' : 'text-black dark:text-white'">
                 {{ task.text }}
               </span>
+              <input 
+                v-else v-model="task.text" 
+                @blur="task.editing = false" 
+                @keyup.enter="task.editing = false"   
+                class="border rounded p-1 bg-white dark:bg-gray-900 text-black dark:text-white border-gray-300 dark:border-gray-600" />
             </div>
             <div class="flex gap-2">
               <button @click="task.editing = true" class="text-yellow-500">✏️</button>
@@ -80,9 +85,14 @@
                 class="flex justify-between items-center p-2 rounded bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600">
                 <div class="flex items-center gap-2">
                   <input type="checkbox" v-model="task.done" />
-                  <span :class="task.done ? 'line-through text-gray-400' : 'text-black dark:text-white'">
+                  <span v-if="!task.editing" :class="task.done ? 'line-through text-gray-400' : 'text-black dark:text-white'">
                     {{ task.text }}
                   </span>
+                  <input 
+                    v-else v-model="task.text" 
+                    @blur="task.editing = false" 
+                    @keyup.enter="task.editing = false" 
+                    class="border rounded p-1 bg-white dark:bg-gray-900 text-black dark:text-white border-gray-300 dark:border-gray-600" />
                 </div>
                 <div class="flex gap-2">
                   <button @click="task.editing = true" class="text-yellow-500">✏️</button>
